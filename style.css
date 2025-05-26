@@ -1,0 +1,345 @@
+*{
+padding:0;
+margin:0;
+box-sizing: border-box;
+}
+
+html{
+	scroll-behavior: smooth;
+	overflow:hidden;
+}
+
+body{
+font-family: "quicksand", sans-serif;
+overflow: hidden;
+}
+ul{
+	list-style: none;
+}
+
+#navbar{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	height: 80px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.container{
+	max-width: 1100px;
+	margin:auto;
+}
+
+.primary-text{
+	color: #fff;
+}
+
+header {
+	height: 100vh;
+	background: url('s.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    position: relative;
+}
+
+header img{
+	width: 80px;
+	height:80px;
+}
+
+#nav img{
+width: 5px;
+height: 5px;
+margin-left: 100px;
+}
+
+#navbar ul{
+	display: flex;
+	margin-right: 100px;
+}
+
+#navbar ul li a{
+	padding:15px 20px;
+	color: white;
+	font-weight:600;
+}
+
+#navbar ul li a:hover{
+	border-bottom: 2px solid #e4b95b;
+	
+}
+
+header .content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+	
+header .content h1{
+font-size: 40px;
+color: white;
+}	
+	
+header .content p{
+	margin:20px 0 40px;
+color: white;
+}
+
+header::before{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: (0, 0, 0, 0.6);
+}
+header *{
+	z-index: 10;
+}
+
+
+
+/* تنسيق الرابط في أسفل الصفحة */
+.back-link {
+    position: fixed;
+    bottom: 20px; /* المسافة من الأسفل */
+    left: 20px; /* المسافة من اليسار */
+    background: #ffcc00; /* لون الخلفية */
+    color: #111; /* لون النص */
+    padding: 12px 25px; /* الحواف */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    transition: background 0.3s ease, transform 0.3s ease; /* تأثيرات */
+    z-index: 100; /* لتتأكد من أنه يظهر فوق العناصر الأخرى */
+}
+
+.back-link:hover {
+    background: #e4b95b; /* تغيير اللون عند التمرير */
+    transform: translateY(-3px); /* تأثير رفع عند التمرير */
+}
+/* تصميم النافذتين */
+.modal1, .modal2 {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ede8e8; /* خلفية فاتحة */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    text-align: center;
+}
+
+.modal1-content p,
+.modal2-content p {
+    font-size: 18px; /* حجم النص */
+    color: #151518; /* لون النص الجديد */
+    font-weight: normal; /* وزن النص */
+    margin-bottom: 10px; 
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #faf2f2; /* حد أسفل */
+    padding-bottom: 10px;
+}
+
+.modal1-content, .modal2-content {
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; /* زيادة المسافة من الأعلى */
+    right: 10px;
+    cursor: pointer;
+    font-size: 24px; /* زيادة حجم الزر */
+    color: #111010; /* لون يتناسب مع الخلفية */
+}
+
+
+
+
+
+
+/* Home Button */
+#contact .btn-secondary {
+    position: fixed; /* يثبت الرابط في موقع معين */
+    bottom: 70px; /* المسافة من أسفل الصفحة */
+    left: 70px; /* المسافة من يسار الصفحة */
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 20px;
+    background-color: #383848;
+    color: #fff;
+    font-size: 1rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+#contact .btn-secondary:hover {
+    background-color: #353431;
+    color: #383848;
+    transform: scale(1.05);
+}
+.btn-secondary {
+    position: fixed; /* يثبت الرابط في موقع معين */
+    bottom: 70px; /* المسافة من أسفل الصفحة */
+    left: 70px; /* المسافة من يسار الصفحة */
+    background-color: #0e0e0d; /* لون خلفية الزر */
+    color: white; /* لون النص */
+    text-decoration: none; /* إزالة الخط السفلي */
+    padding: 10px 20px; /* حجم الزر */
+    border-radius: 5px; /* زوايا الزر */
+    font-size: 1rem; /* حجم النص */
+    transition: all 0.3s ease; /* تأثير عند التفاعل */
+    z-index: 100; /* لضمان أن يظهر الرابط فوق جميع العناصر الأخرى */
+}
+
+.btn-secondary:hover {
+    background-color: #333; /* تغيير لون الخلفية عند التمرير */
+    color: #e2e2f3; /* تغيير لون النص عند التمرير */
+    transform: scale(1.1); /* تكبير الرابط عند التفاعل */
+}
+form{
+	width: 50%;
+}
+
+form input, 
+textarea{
+	display: block;
+	width: 100%;
+	padding: 20px 15px;
+	margin: 20px 0;
+	border: none;
+	background: #e3e2dd;
+	
+}
+
+#contact .btn{
+	background:#383848;
+	color: #fff;
+	cursor: pointer;
+}
+
+#contact .btn:hover{
+	background: #e4b95b;
+}
+
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* لتوسيط الـ Modal */
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 100%; /* عرض مرن */
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* زر الإغلاق في الـ Modal */
+.close-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+/* تحسين الـ Datalist */
+/* تحسين datalist */
+datalist {
+    background-color: #fff;
+    color: #333;
+    max-height: 150px; /* تحديد ارتفاع datalist */
+    overflow-y: auto;
+    width: 250px; /* تحديد العرض */
+    position: absolute; /* يظهر بجانب الـ Button */
+    display: none; /* لا يظهر إلا عند الضغط */
+}
+/* تنسيق زر "BOOK A TABLE" */
+button#openModalBtn {
+    position: relative;
+    cursor: pointer;
+    background-color: #000; /* الأسود */
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+}
+/* تنسيق الـ Modal */
+/* تنسيق النافذة المنبثقة */
+/* تعديل نافذة المودال لتظهر بجانب الزر */
+.modal {
+  display: none; /* يظهر عند الفتح */
+  position: fixed; /* لتثبيت النافذة في منتصف الشاشة */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff; /* خلفية بيضاء */
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  text-align: center;
+  color: #151518; /* لون نص داكن */
+}
+
+.modal-content {
+    position: relative;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background-color: #000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e4b95b;
+}
