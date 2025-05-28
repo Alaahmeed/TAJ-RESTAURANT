@@ -1,11 +1,6 @@
 <?php
 session_start();
-
-if (!isset($_SESSION['login_count'])) {
-    $_SESSION['login_count'] = 1;
-} else {
-    $_SESSION['login_count']++;
-}
+include 'config.php';
 
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     header("Location: ../index.php");
@@ -183,25 +178,6 @@ function loadStats() {
             document.getElementById("total_users").textContent = data.total_users;
             document.getElementById("total_orders").textContent = data.total_orders;
             document.getElementById("total_reservations").textContent = data.total_reservations;
-
-            // عرض عدد الرسائل غير المقروءة إن أردت
-            document.getElementById("unread_messages").textContent = data.unread_messages;
-
-            // عرض عناصر القائمة (menu_items)
-            const table = document.getElementById("items_table");
-            table.innerHTML = "";
-
-            if (data.latest_items.length > 0) {
-                data.latest_items.forEach(item => {
-                    const row = `<tr>
-                        <td>${item.item_name}</td>
-                        <td>${parseFloat(item.item_price).toFixed(2)}</td>
-                    </tr>`;
-                    table.innerHTML += row;
-                });
-            } else {
-                table.innerHTML = "<tr><td colspan='2'>لا توجد بيانات</td></tr>";
-            }
         })
         .catch(err => {
             console.error("Failed to load stats:", err);

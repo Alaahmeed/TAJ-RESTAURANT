@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     exit();
 }
 
-
+//AJAX WITH GET
 if (isset($_GET['q'])) {
     $query = trim($_GET['q']);
     $emails = [];

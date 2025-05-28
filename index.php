@@ -1,8 +1,8 @@
 <?php
 
-include 'config.php';
-include 'auth.php';
 
+session_start();
+include 'config.php';
 
 $inactive = 1800;
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY']) > $inactive) {
@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <header>
         <div id="navbar">
             <a href="profile.php">
-            <img src="chef.jpg" alt="Profile" class="profile-img">
+            <img src="uploads/chef.jpg" alt="Profile" class="profile-img">
             </a>
 
             <nav>
@@ -225,6 +225,112 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+<style>
+    *{
+padding:0;
+margin:0;
+box-sizing: border-box;
+}
 
+html{
+	scroll-behavior: smooth;
+	overflow:hidden;
+}
+
+body{
+font-family: "quicksand", sans-serif;
+overflow: hidden;
+}
+ul{
+	list-style: none;
+}
+
+#navbar{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	height: 80px;
+}
+
+a{
+	text-decoration: none;
+}
+
+.container{
+	max-width: 1100px;
+	margin:auto;
+}
+
+.primary-text{
+	color: #fff;
+}
+
+header {
+	height: 100vh;
+	background: url('uploads/s.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover; 
+    position: relative;
+}
+
+header img{
+	width: 80px;
+	height:80px;
+}
+
+#nav img{
+width: 5px;
+height: 5px;
+margin-left: 100px;
+}
+
+#navbar ul{
+	display: flex;
+	margin-right: 100px;
+}
+
+#navbar ul li a{
+	padding:15px 20px;
+	color: white;
+	font-weight:600;
+}
+
+#navbar ul li a:hover{
+	border-bottom: 2px solid #e4b95b;
+	
+}
+
+header .content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+	
+header .content h1{
+font-size: 40px;
+color: white;
+}	
+	
+header .content p{
+	margin:20px 0 40px;
+color: white;
+}
+
+header::before{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background: (0, 0, 0, 0.6);
+}
+header *{
+	z-index: 10;
+}
+
+
+</style>
 </body>
 </html>

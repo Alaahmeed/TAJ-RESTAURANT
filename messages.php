@@ -1,4 +1,5 @@
 <?php
+
 include 'config.php';
 
 if (isset($_GET['delete'])) {
@@ -48,7 +49,7 @@ if (isset($_GET['delete'])) {
     border-bottom: 1px solid #333;
     word-wrap: break-word;
     max-width: 250px;
-
+        }
 
         th {
             background-color: #222;

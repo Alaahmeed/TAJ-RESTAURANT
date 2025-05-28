@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+include 'config.php';
+
 // معالجة الإرسال فقط عند طلب POST عبر Ajax
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
@@ -74,9 +78,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
             <div class="contact-info">
                 <div>
                     <h3>ADDRESS</h3>
-                    <p><img src="location.png" alt="location"> JAMAL STREET – TAIZ – YEMEN</p>
-                    <p><img src="call.png" alt="phone"> 00967777777</p>
-                    <p><img src="email.png" alt="email"> tajrestaurant@gmail.com</p>
+                    <p><img src="uploads/location.png" alt="location"> JAMAL STREET – TAIZ – YEMEN</p>
+                    <p><img src="uploads/call.png" alt="phone"> 00967777777</p>
+                    <p><img src="uploads/email.png" alt="email"> tajrestaurant@gmail.com</p>
                 </div>
                 <div>
                     <h3>WORKING HOURS</h3>
@@ -85,10 +89,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SERVER['HTTP_X_REQUESTED_WI
                 </div>
                 <div>
                     <h3>FOLLOW US ON SOCIAL MEDIA</h3>
-                    <a href="#"><img src="face.png" alt="facebook"></a>
-                    <a href="#"><img src="what.png" alt="whatsapp"></a>
-                    <a href="#"><img src="twi.png" alt="twitter"></a>
-                    <a href="#"><img src="ins.png" alt="instagram"></a>
+                    <a href="#"><img src="uploads/face.png" alt="facebook"></a>
+                    <a href="#"><img src="uploads/what.png" alt="whatsapp"></a>
+                    <a href="#"><img src="uploads/twi.png" alt="twitter"></a>
+                    <a href="#"><img src="uploads/ins.png" alt="instagram"></a>
                 </div>
             </div>
 

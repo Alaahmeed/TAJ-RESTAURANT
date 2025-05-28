@@ -1,10 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['login_count'])) {
-    $_SESSION['login_count'] = 1;
-} else {
-    $_SESSION['login_count']++;
-}
+
 $message = '';
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['item'])) {
 
@@ -58,8 +54,8 @@ $message = '';
 <body>
 <section id="offers">
     <div class="container">
-        <h2>عروضنا الخاصة</h2>
-        <p>أشهى الأطباق</p>
+        <h2>Our Offers</h2>
+        <p>Speical Dishes</p>
         <div class="offers-items">
             <?php
             $conn = new mysqli("localhost", "root", "", "taj_restaurant");
@@ -86,7 +82,7 @@ $message = '';
     <div id="messageBox" style="margin:10px 0; font-weight:bold;"></div>
 
 
-        
+        <!-- نافذة تأكيد الطلب -->
         <div class="modal1" id="orderModal">
             <div class="modal1-content">
                 <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -97,7 +93,7 @@ $message = '';
             </div>
         </div>
 
-    
+        <!-- نافذة "تم الطلب وشكرًا" -->
         <div class="modal2" id="thankYouModal">
             <div class="modal2-content">
                 <span class="close-btn" onclick="closeThankYouModal()">&times;</span>
@@ -107,150 +103,130 @@ $message = '';
             </div>
         </div>
 
-        
+        <!-- رابط العودة -->
         <a href="index.php" class="back-link">Back to Home</a>
     </section>
 
-<style>
-
+     <style>
+    /* offers start */
 #offers {
-    
+    min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), url("ee.jpg") center center/cover fixed;
+    align-items: center;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.5)), 
+                url("ee.jpg") center center / cover no-repeat fixed;
     flex-direction: column;
     padding: 20px;
     text-align: center;
-    min-height: 100vh;
-    box-sizing: border-box;
-    overflow: visible;
+    width: 100%;
+}
 
 #messageBox {
     position: fixed;
     top: 10px;
     right: 20px;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: #fff;
+    background-color:rgb(11, 12, 11);
+    color: #000;
     padding: 6px 12px;
     font-size: 13px;
     border-radius: 5px;
-    display: none;
+    display: none; /* مخفي مبدئيًا */
     z-index: 9999;
 }
 
 #offers h2 {
     font-size: 48px;
-    color: #ffcc00;
+    color: #ffcc00; 
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); 
 }
 
 #offers p {
-    color: rgb(255, 253, 253);
+    color:rgb(255, 253, 253); 
     margin-bottom: 30px;
-    font-size: 25px;
+    font-size: 25px; /* حجم نص أكبر */
 }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    
-    height: auto;
-    overflow-y: auto;
-    font-family: Arial, sans-serif;
-}
 #offers .offers-items {
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
     justify-content: center;
-    align-items: stretch;
-    padding-right: 10px;
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
+    align-items: stretch; 
 }
 
 .offer-box {
-    flex: 0 1 calc(33.33% - 20px);
+    flex: 0 1 calc(33.33% - 20px); /* 3 عناصر في الصف */
     box-sizing: border-box;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.6); /* خلفية لصندوق العرض */
     border-radius: 15px;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-between; /* توزيع المحتوى داخليًا */
     align-items: center;
-    min-height: 380px;
+    min-height: 380px; /* اجعل كل صندوق بطول ثابت */
     text-align: center;
-    color: #fff;
-    transition: background-color 0.3s ease;
 }
 
-.offer-box:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
 
 #offers .offers-items img {
-    width: 100px;
+    width: 100px; /* زيادة حجم الصورة */
     max-width: 200px;
     height: auto;
-    border-radius: 15px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px; /* زوايا دائرية أكبر */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* تأثيرات عند التمرير */
 }
 
 #offers .offers-items img:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    transform: scale(1.1); /* تكبير الصورة */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5); /* ظل عند التمرير */
 }
 
 #offers .offers-items h3 {
-    font-size: 28px;
+    font-size: 28px; /* حجم عنوان أكبر */
     margin: 10px 0;
-    color: #ffcc00;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    color: #ffcc00; /* لون ذهبي */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6); /* ظل للنص */
 }
 
 #offers .offers-items p {
-    font-size: 16px;
+    font-size: 16px; /* حجم نص أكبر */
     padding: 0 10px;
     font-weight: 300;
     margin-bottom: 15px;
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9); /* لون نص مريح */
 }
 
 #offers .offers-items span {
-    font-size: 22px;
-    color: #ff5733;
+    font-size: 22px; /* زيادة حجم السعر */
+    color: #ff5733; /* لون مميز للسعر */
     font-weight: bold;
     margin-left: 5px;
 }
-
 .order-btn {
     display: inline-block;
-    background-color: #e4b95b;
-    color: #fff;
-    font-size: 16px;
-    font-weight: bold;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #e4b95b; /* لون الخلفية */
+    color: #fff; /* لون النص */
+    font-size: 16px; /* حجم النص */
+    font-weight: bold; /* جعل النص عريضًا */
+    padding: 10px 20px; /* الحواف الداخلية */
+    border: none; /* إزالة الحدود */
+    border-radius: 25px; /* جعل الزر دائريًا */
+    cursor: pointer; /* تغيير المؤشر عند التحويم */
+    transition: all 0.3s ease; /* تأثيرات التحويم */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* ظل خفيف */
 }
 
 .order-btn:hover {
-    background-color: #383848;
-    color: #e4b95b;
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
+    background-color: #383848; /* لون الخلفية عند التحويم */
+    color: #e4b95b; /* لون النص عند التحويم */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* تعزيز الظل عند التحويم */
+    transform: translateY(-5px); /* حركة خفيفة للأعلى */
 }
-
-</style>
-
+  </style>
+  
 <script>
     const orderModal = document.getElementById('orderModal');
     const thankYouModal = document.getElementById('thankYouModal');
@@ -276,7 +252,7 @@ html, body {
 
 function confirmOrder() {
     $.ajax({
-        url: '',
+        url: '',  // نفس الصفحة أو رابط المعالجة
         type: 'POST',
         data: {
             item: currentItem,
@@ -290,8 +266,8 @@ function confirmOrder() {
             closeModal();
             thankYouModal.style.display = 'flex';
             messageBox.textContent = data;
-            messageBox.style.display = 'block';
-            messageBox.style.color = '#fff';
+            messageBox.style.display = 'block'; // عرض الرسالة
+            messageBox.style.color = '#fff';    // لون أبيض
         },
         error: function() {
             alert('حدث خطأ أثناء إرسال الطلب.');
@@ -301,7 +277,7 @@ function confirmOrder() {
 
 function closeThankYouModal() {
     thankYouModal.style.display = 'none';
-    messageBox.style.display = 'none';
+    messageBox.style.display = 'none'; // إخفاء الرسالة بعد ضغط OK
 }
 
     document.querySelectorAll('.close-btn').forEach(btn => {

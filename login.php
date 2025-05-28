@@ -26,7 +26,7 @@ if (isset($_SESSION['user_id'])) {
     setcookie('logged_in', '', time() - 3600, "/");
 }
 
-
+// AJAX TO LOGIN
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
     strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest') {
 

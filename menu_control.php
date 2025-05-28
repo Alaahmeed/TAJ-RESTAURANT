@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'config.php';
 
 // Save or update item
